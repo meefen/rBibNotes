@@ -1,9 +1,5 @@
 ### PDF-Expert
 
-## Working directory
-wd <- "~/src/r/myworkflow"
-setwd(wd)
-
 # Get args from Rscript command
 args <- commandArgs(trailingOnly = TRUE)
 # args[1] = citekey

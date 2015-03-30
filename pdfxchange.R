@@ -2,8 +2,6 @@
 
 library(stringr)
 
-file_path <- "/home/bodong/Dropbox/PDFExpert"
-
 ## Function for formatting text
 format_xchange <- function(type, text, page) {
   highlight <- ""
@@ -16,11 +14,11 @@ format_xchange <- function(type, text, page) {
 }
 
 # Find out the newest file
-files <- list.files(file_path)
+files <- list.files(xchange_dir)
 mdate <- as.vector(sapply(files, function(f) 
-  file.info(paste0(file_path, "/", f))$mtime))
+  file.info(paste0(xchange_dir, "/", f))$mtime))
 file_name <- files[which(mdate == max(mdate))]
-file <- paste0(file_path, "/", file_name)
+file <- paste0(xchange_dir, "/", file_name)
 
 # Change encoding to UTF-8
 file_tmp <- paste0(file, ".tmp")

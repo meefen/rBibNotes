@@ -1,9 +1,5 @@
 ### Skim
 
-## Working directory
-wd <- "~/src/r/myworkflow"
-setwd(wd)
-
 # Get args from Rscript command
 args <- commandArgs(trailingOnly = TRUE)
 # args[1] = citekey
@@ -23,15 +19,17 @@ lines <- readLines(conn, encoding="UTF-8")
 close(conn)
 
 # Parse bib
-bibs = read.bib(file = bib_file)
-bibs_keys = unlist(bibs$key)
-bib = bibs[which(bibs_keys == args[1])]
-bib_str = format(bib)
-bib_author = bib$author[1]$family
-bib_title = gsub("\\{|\\}|\\/", "", paste(bib_author, "-", bib$year, "-", bib$title))
+# bibs = read.bib(file = bib_file)
+# bibs_keys = unlist(bibs$key)
+# bib = bibs[which(bibs_keys == args[1])]
+# bib_str = format(bib)
+# bib_author = bib$author[1]$family
+# bib_title = gsub("\\{|\\}|\\/", "", paste(bib_author, "-", bib$year, "-", bib$title))
+bib_title = args[2]
+bib_str = args[3]
 
 # Parse file
-out <- paste0(jekyll_front_matter(args[1], bib_title, bib_str), 
+out <- paste0(jekyll_front_matter(args[1], bib_title, bib_str),
               parse_skim(lines))
 
 # Write results
