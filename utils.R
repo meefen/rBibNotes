@@ -54,6 +54,8 @@ parse_skim <- function(lines) {
       }
     }
   }
+  out <- paste0(out, format_skim(type, text, page)) # add the final line
+  
   return(out)
 }
 
@@ -128,6 +130,8 @@ parse_expert <- function(lines) {
 #       out <- paste0(out, format_expert("Text Note", line, page))
 #     }
   }
+  out <- paste0(out, format_skim(type, text, page)) # add the final line
+
   return(out)
 }
 
