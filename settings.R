@@ -3,6 +3,11 @@
 ## Skim notes
 skim_dir = "~/Dropbox/Skim"
 
+## Paperpile JSON files
+
+pp_dir = "/tmp"
+#pp_dir = "~/Dropbox/Skim"
+
 ## Bibtex file
 bib_file = "~/Dropbox/Public/library.bib"
 
@@ -18,3 +23,4 @@ xchange_dir <- "~/Dropbox/PDFExpert"
 ## Markdown highlighting mechanisms
 TEXT_NOTE_TAG <- c("> ", "") #c("**_", "_**") # left and right
 UNDERLINE_TAG <- c("**", "**")
+STRIKETHROUGH_TAG <- c("~~", "~~")
