@@ -7,7 +7,9 @@ source("settings.R")
 jekyll_front_matter <- function(citekey="Unknown", bib_title="", bib_str=""){
   if(is.na(bib_title)) bib_title = citekey
   paste0("---\nlayout: post\ncategories: notes\ntitle: 'Notes: ", bib_title, "'\n---",
-         "\n\n## References\n\n**Citekey**: @", citekey, "\n\n", bib_str, "\n\n## Notes\n\n## Highlights\n")
+         "\n\n## References\n\n**Citekey**: @", citekey, "\n\n", bib_str, 
+         "\n\n## Notes\n\n*Summarize*: \n\n*Assess*: \n\n*Reflect*: \n\n",
+         "## Highlights\n")
 }
 
 ## Function for parsing and formating Paperpile/MetaPDF annotations
