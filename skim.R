@@ -42,3 +42,4 @@ writeLines(out, out_conn)
 close(out_conn)
 
 print(paste("Successfully parsed! Check", out_file))
+system(paste("open", out_file))
