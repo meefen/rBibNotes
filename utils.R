@@ -6,8 +6,9 @@ source("settings.R")
 ### Function to insert jekyll front-matter
 jekyll_front_matter <- function(citekey="Unknown", bib_title="", bib_str=""){
   if(is.na(bib_title)) bib_title = citekey
-  paste0("---\nlayout: post\ncategories: notes\ntitle: 'Notes: ", bib_title, "'\n---",
-         "\n\n## References\n\n**Citekey**: @", citekey, "\n\n", bib_str, 
+  paste0("---\nlayout: post\ncategories: notes\ntitle: 'Notes: ", bib_title,
+        "'\ndate: '", format(Sys.time(), "%Y-%m-%d"), "'\n---",
+         "\n\n## References\n\n**Citekey**: @", citekey, "\n\n", bib_str,
          "\n\n## Notes\n\n*Summarize*: \n\n*Assess*: \n\n*Reflect*: \n\n",
          "## Highlights\n")
 }
@@ -15,33 +16,33 @@ jekyll_front_matter <- function(citekey="Unknown", bib_title="", bib_str=""){
 ## Function for parsing and formating Paperpile/MetaPDF annotations
 parse_paperpile <- function(json_df) {
   ## json_df: a data frame parsed from a json file containingPaperpile annotations
-  
+
   text = '\n'
-  
+
   by(json_df, 1:nrow(json_df), function(r) {
     text <<- paste0(text, format_paperpile_annotation(
       r$Subtype, r$MarkupText, r$Text, r$Color, r$PageNumber))
   })
-  
+
   return(text)
 }
 
 format_paperpile_annotation <- function(type, highlight, comment, color=NULL, page=NULL) {
   # set page text
   page_text = if(is.null(page) | is.na(page)) "" else paste0(" (p. ", page, ")")
-  
+
   if(str_detect(type, "Comment")) {
     syntax_wrap <- TEXT_NOTE_TAG
     return(paste0(syntax_wrap[1], comment, syntax_wrap[2], page_text, "\n\n"))
-    
+
   } else if(str_detect(type, "Underline")) {
     syntax_wrap <- UNDERLINE_TAG
     return(paste0(syntax_wrap[1], highlight, syntax_wrap[2], page_text, "\n\n"))
-    
+
   } else if(type == "StrikeOut") {
     syntax_wrap <- STRIKETHROUGH_TAG
     return(paste0(syntax_wrap[1], highlight, syntax_wrap[2], page_text, "\n\n"))
-    
+
   } else if(type == "Highlight") {
     text = paste0(highlight, page_text, "\n\n")
     if(!is.null(comment) && !is.na(comment)) {
@@ -98,7 +99,7 @@ parse_skim <- function(lines) {
     }
   }
   out <- paste0(out, format_skim(type, text, page)) # add the final line
-  
+
   return(out)
 }
 

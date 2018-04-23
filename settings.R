@@ -15,7 +15,7 @@ bib_file = "~/Dropbox/Public/library.bib"
 pdfexpert_dir = "~/Dropbox/PDFExpert"
 
 ## Directory in Jekyll to export notes
-jekyll_dir = "~/Dropbox/Public/meefen.github.io/notes/_posts"
+jekyll_dir = "~/Documents/src/meefen/content/notes"
 
 ## PDF-xChange notes directory
 xchange_dir <- "~/Dropbox/PDFExpert"
