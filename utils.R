@@ -44,7 +44,12 @@ format_paperpile_annotation <- function(type, highlight, comment, color=NULL, pa
     return(paste0(syntax_wrap[1], highlight, syntax_wrap[2], page_text, "\n\n"))
 
   } else if(type == "Highlight") {
-    text = paste0(highlight, page_text, "\n\n")
+    if(!is.null(color) && color != "#f8e29c") {
+      syntax_wrap <- UNDERLINE_TAG
+      text = paste0(syntax_wrap[1], highlight, syntax_wrap[2], page_text, "\n\n")
+    } else {
+      text = paste0(highlight, page_text, "\n\n")
+    }
     if(!is.null(comment) && !is.na(comment)) {
       syntax_wrap <- TEXT_NOTE_TAG
       text = paste0(text, paste0(syntax_wrap[1], comment, syntax_wrap[2], page_text, "\n\n"))
